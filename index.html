@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Đoán Số</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      text-align: center;
+      background-color: #f0f0f0;
+      padding-top: 50px;
+    }
+    .container {
+      background: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .result {
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🎲 Game Đoán Số 🎲</h1>
+  <p>Đoán một số từ 1 đến 100</p>
+  <input type="number" id="guess" placeholder="Nhập số bạn đoán" />
+  <br>
+  <button onclick="checkGuess()">Kiểm tra</button>
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  let secretNumber = Math.floor(Math.random() * 100) + 1;
+
+  function checkGuess() {
+    const guess = parseInt(document.getElementById('guess').value);
+    const result = document.getElementById('result');
+
+    if (isNaN(guess) || guess < 1 || guess > 100) {
+      result.innerText = "⛔ Vui lòng nhập số từ 1 đến 100!";
+      return;
+    }
+
+    if (guess < secretNumber) {
+      result.innerText = "🔼 Số bạn đoán nhỏ hơn!";
+    } else if (guess > secretNumber) {
+      result.innerText = "🔽 Số bạn đoán lớn hơn!";
+    } else {
+      result.innerText = "🎉 Chính xác! Bạn đã đoán đúng!";
+    }
+  }
+</script>
+
+</body>
+</html>
